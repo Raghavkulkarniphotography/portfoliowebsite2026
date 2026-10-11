@@ -1,7 +1,7 @@
 /* ===== EDIT HERE: contact details ===== */
 const SITE={wa:"91XXXXXXXXXX",ig:"yourhandle",email:"raghavkulkarniphotography@gmail.com"}; // wa: country code + number, no + or spaces; ig: username without @
 /* ===== EDIT HERE: portfolio. To add a photo: upload it, add its number to the list ===== */
-const P="assets/images/";
+const P="";
 const SETS={
  jewellery:{t:"Jewellery",n:[1,2,3,4,5,6,7,8,9]},
  skincare:{t:"Skincare and beauty",n:[1,2,3,4,5,6,7,8,9,10,12]},
