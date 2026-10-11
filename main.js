@@ -29,8 +29,10 @@ const sel=$("#sel");if(sel)fill(sel,SELECTED.map(id=>[url(id),al(id)]));
 const g=$("#g");if(g){let first=1;const hk=()=>{const h=location.hash.slice(1),k=SETS[h]?h:"jewellery";$$("[data-g]").forEach(b=>b.classList.toggle("on",b.dataset.g===k));g.classList.add("out");
  setTimeout(()=>{fill(g,ids(k).map(id=>[url(id),al(id)]));g.classList.remove("out")},first?0:260);first=0};
  $$("[data-g]").forEach(b=>b.onclick=()=>location.hash=b.dataset.g);addEventListener("hashchange",hk);hk()}
-/* client logos: 4 copies so the loop never shows a gap; CSS moves one copy's width */
-const mq=$("#mq");if(mq){const one=d=>LOGOS.map(([n,t])=>`<div class="lg"${d?" data-d aria-hidden=true":""}><img src="${P}clients/${n}-logo.webp" alt="${d?"":t+" logo"}" loading="lazy" onerror="this.parentNode.remove()"></div>`).join("");mq.innerHTML=one(0)+one(1)+one(1)+one(1)}
+/* client logos: a static grid while there are few; the sliding strip (4 copies, no gap) once there are 10 or more */
+const mq=$("#mq");if(mq){const tile=([n,t,bg],d,c)=>`<div class="lg${c}"${d?" data-d aria-hidden=true":""}${bg?` style="background:${bg}"`:""}><img src="${P}clients/${n}-logo.webp" alt="${d?"":t+" logo"}" loading="lazy" onerror="this.parentNode.remove()"></div>`;
+ if(LOGOS.length>=10){const one=d=>LOGOS.map(l=>tile(l,d,"")).join("");mq.innerHTML=one(0)+one(1)+one(1)+one(1)}
+ else{mq.parentNode.className="";mq.className="lgs";mq.innerHTML=LOGOS.map(l=>tile(l,0," rv")).join("");$$(".rv",mq).forEach((d,i)=>{d.style.setProperty("--w",i*.08+"s");io.observe(d)})}}
 const ts=$("#tst");if(ts){if(TESTIMONIALS.length){$(".qs",ts).innerHTML=TESTIMONIALS.map(t=>`<div class="q" data-r><p>${t.q}</p><span>${t.n}</span></div>`).join("");$$("[data-r]",ts).forEach(watch)}else ts.remove()}
 const fm=$("#film");if(fm)fm.onclick=()=>{$("iframe",vm).src="https://www.youtube.com/embed/fm0evRNFji0?autoplay=1&rel=0&playsinline=1";vm.classList.add("on")};
 /* packages + enquiries */

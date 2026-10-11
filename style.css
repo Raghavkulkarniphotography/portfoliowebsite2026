@@ -56,7 +56,9 @@ h2{font-size:clamp(40px,6vw,88px)}h3{font-weight:500;font-size:20px;line-height:
 .film{position:relative;aspect-ratio:16/9;cursor:pointer;border-radius:3px}.film span{position:absolute;z-index:2;left:22px;bottom:20px;background:var(--sky);color:var(--bg);padding:9px 18px;font-size:14px;border-radius:2px}
 .mq{overflow:hidden}.mt{display:flex;width:max-content;animation:mq 45s linear infinite}.mq:hover .mt,.mq:focus-within .mt{animation-play-state:paused}
 @keyframes mq{to{transform:translateX(-25%)}}
-.lg{flex:none;width:170px;height:84px;margin-right:16px;background:#fff;border-radius:6px;display:grid;place-items:center;padding:14px}.lg img{max-width:100%;max-height:100%;object-fit:contain}
+.lg{position:relative;flex:none;width:170px;height:84px;margin-right:16px;background:#fff;border-radius:4px}
+.lg img{position:absolute;inset:14px;width:calc(100% - 28px);height:calc(100% - 28px);object-fit:contain}
+.lgs{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}.lgs .lg{width:auto;height:auto;aspect-ratio:3/2;margin:0}.lgs .lg:hover{box-shadow:0 0 0 2px var(--ds)}
 .steps,.pks,.qs,.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.steps{grid-template-columns:repeat(4,1fr);gap:28px}
 .steps div{border-top:1px solid var(--ln);padding-top:18px}.steps b{font-size:14px;color:var(--sky);font-weight:400}.steps h3{margin:6px 0 8px}.steps p{font-size:14px;color:var(--st)}
 .pk{display:block;padding:30px;background:var(--gr);border:1px solid var(--ln);border-radius:3px;transition:transform .5s var(--e),border-color .4s}.pk:hover{transform:translateY(-6px);border-color:var(--sky)}
@@ -88,3 +90,4 @@ ul.l{list-style:none;color:var(--st);font-size:14px;line-height:1.8}ul.l li{padd
 .m .nav nav a{opacity:1;transform:none;transition-delay:calc(.2s + var(--i)*.07s)}.nav nav .btn{font:500 15px var(--fs);margin-top:14px}}
 @media(prefers-reduced-motion:reduce){*,:before,:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 .js [data-r],.js .mk>span,.js .rv,.js .rv img{opacity:1!important;transform:none!important;clip-path:none!important}#intro{display:none}.stw span{opacity:1!important}.lg[data-d]{display:none}.mt{flex-wrap:wrap;width:auto}}
+@media(max-width:900px){.lgs{grid-template-columns:repeat(3,1fr)}}@media(max-width:520px){.lgs{grid-template-columns:repeat(2,1fr)}}
