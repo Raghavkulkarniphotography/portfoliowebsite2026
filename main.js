@@ -19,10 +19,14 @@ $$(".hero [data-r],.hero .rv").forEach((e,i)=>e.style.setProperty("--w",.55+i*.1
 const go=()=>{H.classList.add("go");$$(".hero [data-r],.hero .rv").forEach(e=>e.classList.add("in"))};
 if($(".hero")&&!RM&&!S("i")){S("i",1);const im=new Image();im.src="logo.png";
  Promise.race([im.decode?im.decode():Promise.resolve(),new Promise((_,j)=>setTimeout(j,2000))]).then(()=>{
-  B.insertAdjacentHTML("beforeend",'<div id="intro" aria-hidden="true"><i class="ln"></i><div class="ic"><img class="il" src="logo.png" alt=""><svg class="if"><path pathLength="1"/></svg></div><i class="sp"></i></div>');
-  const it=$("#intro"),ic=$(".ic",it),sv=$(".if",it),fit=()=>{const w=ic.offsetWidth,h=ic.offsetHeight;sv.setAttribute("viewBox",`0 0 ${w} ${h}`);$("path",sv).setAttribute("d",`M0 ${h/2}V0H${w}V${h}H0V${h/2}`)};
-  fit();new ResizeObserver(fit).observe(ic);
-  const up=()=>{if(it.classList.contains("up"))return;it.classList.add("up");setTimeout(go,200);setTimeout(()=>it.remove(),1100)};it.onclick=up;setTimeout(up,1500)}).catch(go)}else go();
+  const vw=innerWidth,vh=innerHeight,cx=vw/2,cy=vh/2;
+  B.insertAdjacentHTML("beforeend",`<div id="intro" aria-hidden="true"><div class="pt"><div class="lc" style="height:${vh}px"><img class="il" src="logo.png" alt=""></div><svg class="if" width="${vw}" height="${vh}" viewBox="0 0 ${vw} ${vh}"><path pathLength="1"/></svg></div><div class="pb"></div></div>`);
+  /* the line enters from the left, runs a rounded lap that hugs the logo's shape, then leaves to the right along the seam where the screen splits */
+  const it=$("#intro"),lg=$(".il",it),lh=lg.offsetHeight,lw=lg.offsetWidth||lh*im.naturalWidth/im.naturalHeight,
+   pY=.32*lh+14,r=lh/2+pY,pX=r-Math.sqrt(pY*(lh+pY))+10,W=Math.max(lw+2*pX,2*r),x0=cx-W/2,yT=cy-r,yB=cy+r;
+  $(".pt",it).style.height=yB+"px";$(".pb",it).style.top=yB+"px";
+  $("path",it).setAttribute("d",`M0 ${yB}H${x0+r}H${x0+W-r}A${r} ${r} 0 0 0 ${x0+W-r} ${yT}H${x0+r}A${r} ${r} 0 0 0 ${x0+r} ${yB}H${vw}`);
+  const up=()=>{if(it.classList.contains("up"))return;it.classList.add("up");setTimeout(go,200);setTimeout(()=>it.remove(),1100)};it.onclick=up;setTimeout(up,1700)}).catch(go)}else go();
 /* portfolio grids */
 const mk=(f,a)=>{const d=document.createElement("div"),i=new Image();d.className="rv";i.src=f;i.alt=a;i.loading="lazy";i.decoding="async";i.onerror=()=>d.remove();d.onclick=()=>show(f);d.appendChild(i);return d};
 const fill=(el,L)=>{el.innerHTML="";L.forEach(([f,a],i)=>{const d=mk(f,a);d.style.setProperty("--w",i%5*.08+"s");el.appendChild(d);io.observe(d)})};
