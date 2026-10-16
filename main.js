@@ -19,8 +19,10 @@ $$(".hero [data-r],.hero .rv").forEach((e,i)=>e.style.setProperty("--w",.55+i*.1
 const go=()=>{H.classList.add("go");$$(".hero [data-r],.hero .rv").forEach(e=>e.classList.add("in"))};
 if($(".hero")&&!RM&&!S("i")){S("i",1);const im=new Image();im.src="logo.png";
  Promise.race([im.decode?im.decode():Promise.resolve(),new Promise((_,j)=>setTimeout(j,2000))]).then(()=>{
-  B.insertAdjacentHTML("beforeend",`<div id="intro" aria-hidden="true">${["t","b"].map(c=>`<div class="ip ${c}"><div class="lw"><img src="logo.png" alt=""></div></div>`).join("")}</div>`);
-  const it=$("#intro"),up=()=>{if(it.classList.contains("up"))return;it.classList.add("up");setTimeout(go,150);setTimeout(()=>it.remove(),1100)};it.onclick=up;setTimeout(up,1100)}).catch(go)}else go();
+  B.insertAdjacentHTML("beforeend",'<div id="intro" aria-hidden="true"><i class="ln"></i><div class="ic"><img class="il" src="logo.png" alt=""><svg class="if"><path pathLength="1"/></svg></div><i class="sp"></i></div>');
+  const it=$("#intro"),ic=$(".ic",it),sv=$(".if",it),fit=()=>{const w=ic.offsetWidth,h=ic.offsetHeight;sv.setAttribute("viewBox",`0 0 ${w} ${h}`);$("path",sv).setAttribute("d",`M0 ${h/2}V0H${w}V${h}H0V${h/2}`)};
+  fit();new ResizeObserver(fit).observe(ic);
+  const up=()=>{if(it.classList.contains("up"))return;it.classList.add("up");setTimeout(go,200);setTimeout(()=>it.remove(),1100)};it.onclick=up;setTimeout(up,1500)}).catch(go)}else go();
 /* portfolio grids */
 const mk=(f,a)=>{const d=document.createElement("div"),i=new Image();d.className="rv";i.src=f;i.alt=a;i.loading="lazy";i.decoding="async";i.onerror=()=>d.remove();d.onclick=()=>show(f);d.appendChild(i);return d};
 const fill=(el,L)=>{el.innerHTML="";L.forEach(([f,a],i)=>{const d=mk(f,a);d.style.setProperty("--w",i%5*.08+"s");el.appendChild(d);io.observe(d)})};
